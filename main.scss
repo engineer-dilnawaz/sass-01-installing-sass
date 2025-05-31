@@ -1,10 +1,16 @@
 @import "_variables.scss";
 @import "typography.scss";
 
+@mixin media-min-width($width) {
+  @media (min-width: $width) {
+    @content;
+  }
+}
+
 html {
   font-size: 94.75%;
 
-  @media (min-width: 40rem) {
+  @include media-min-width((40rem)) {
     font-size: 125%;
   }
 }
@@ -15,7 +21,7 @@ body {
 }
 
 .container {
-  @include flex-prefix;
+  @include display-flex();
 
   flex: {
     direction: column;
@@ -35,7 +41,7 @@ body {
   width: 90%;
   box-sizing: border-box;
 
-  @media (min-width: 40rem) {
+  @include media-min-width((40rem)) {
     width: 30rem;
   }
 }
@@ -43,10 +49,10 @@ body {
 .sass-introduction {
   @extend .sass-section;
   box-shadow: $size-tiny $size-tiny 0.1rem map-get($colors, lightgray);
-}
 
-.sass-introduction p {
-  margin: 0;
+  p {
+    margin: 0;
+  }
 }
 
 .sass-details {
@@ -56,17 +62,17 @@ body {
 
 .section-header {
   border-bottom: $border-default;
-}
 
-.section-header h1 {
-  margin: 0 0 $size-default 0;
+  h1 {
+    margin: 0 0 $size-default 0;
+  }
 }
 
 .documentation-links {
   list-style: none;
   margin: $size-default 0 0 0;
   padding: 0;
-  @include flex-prefix;
+  @include display-flex();
   flex-direction: column;
 
   li {
@@ -80,12 +86,12 @@ body {
     display: block;
     padding: $size-tiny;
     border: $border-default;
-  }
 
-  .documentation-link:hover,
-  .documentation-link:active {
-    color: map-get($colors, white);
-    background: map-get($colors, secondary);
-    border-color: map-get($colors, secondary);
+    &:hover,
+    &:active {
+      color: map-get($colors, white);
+      background: map-get($colors, secondary);
+      border-color: map-get($colors, secondary);
+    }
   }
 }
